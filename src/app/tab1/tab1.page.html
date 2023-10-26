@@ -1,0 +1,76 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Principal
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-content class="ion-padding">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12">
+            <ion-select 
+            label="Tipo" 
+            [multiple]="true" 
+            interface ="popover" 
+            label-placement="floating" 
+            [(ngModel)]="filter"
+            (ionChange)= "filterProducts()"
+            >
+
+              <ion-select-option value="Abarrotes">
+                Abarrotes
+              </ion-select-option>
+              <ion-select-option value="Frutas y verduras">
+                Frutas y verduras
+              </ion-select-option>
+              <ion-select-option value="Limpieza">
+                Limpieza
+              </ion-select-option>
+              <ion-select-option value="Farmacia">
+                Farmacias
+              </ion-select-option>
+            </ion-select>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size = "6" *ngFor = "let product of productsFounds; index as i">
+          <ion-card class="ion-text-center">
+            <img [src]="product.photo+i" />
+            <ion-card-header>
+              <ion-card-title>
+                {{product.name}}
+                <ion-badge color = "primary"> {{product.type}}</ion-badge>
+              </ion-card-title>
+              <ion-card-subtitle> {{ product.price | currency }}  </ion-card-subtitle>
+            </ion-card-header>
+            <ion-card-content>
+                {{product.description}}
+            </ion-card-content>
+            <ion-card-content>
+              <ion-button fill="outline" (click)="agregarProducto(product)">Agregar</ion-button>
+              <ion-button fill="outline" (click)="agregarAlFavorito(product)">Favoritos</ion-button>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-list>
+      <ion-item *ngFor="let producto of productosAgregados">
+        <ion-label>
+          {{ producto.name }}:${{ producto.price}}
+        </ion-label>
+        <ion-badge slot="end"> Cantidad: {{ producto.cantidad }}</ion-badge>
+        <ion-button fill="outline" (click)="eliminarProducto(producto)">Eliminar</ion-button>
+      </ion-item>
+    </ion-list>
+
+    <p>Total: ${{total}}</p>
+
+  </ion-content>
+</ion-content>
+

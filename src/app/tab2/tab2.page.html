@@ -1,0 +1,20 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Carrito
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list>
+    <ion-item *ngFor="let producto of productosAgregados">
+      <ion-label>
+        {{ producto.name }}: ${{ producto.price }}
+      </ion-label>
+      <ion-badge slot="end">Cantidad: {{ producto.cantidad }}</ion-badge>
+      <ion-button fill="outline" (click)="eliminarProducto(producto)">Eliminar</ion-button>
+    </ion-item>
+  </ion-list>
+  <p>Total: ${{ total}}</p>
+</ion-content>
