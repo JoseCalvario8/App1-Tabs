@@ -1,0 +1,2 @@
+https://tienda-ionic-260f4.web.app/tabs/tab1
+https://tienda-ionic-260f4.firebaseapp.com/tabs/tab1
